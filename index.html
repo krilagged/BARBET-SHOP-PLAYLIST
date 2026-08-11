@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>STAY SHARP — The Barber Shop</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://www.youtube.com/iframe_api"></script>
+<style>
+*{font-variant-ligatures:common-ligatures}
+body{font-family:'Space Grotesk',sans-serif;background:#080808;color:#F5F1E8;overflow-x:hidden}
+.font-anton{font-family:'Anton',sans-serif}
+.font-archivo{font-family:'Archivo Black',sans-serif}
+.font-mono{font-family:'JetBrains Mono',monospace}
+.font-serif{font-family:'Instrument Serif',serif}
+.stroke-text{-webkit-text-stroke:2px #F5F1E8;color:transparent}
+@media(max-width:768px){.stroke-text{-webkit-text-stroke:1.5px #F5F1E8}}
+.noise{position:absolute;inset:0;opacity:.05;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E")}
+.grid-bg{background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 48px 48px}
+.barber-pole-stripes{
+  background: repeating-linear-gradient(25deg,
+    #E63946 0 24px,
+    #F5F1E8 24px 48px,
+    #1D4ED8 48px 72px,
+    #F5F1E8 72px 96px);
+  animation: poleSlide 1.8s linear infinite;
+}
+@keyframes poleSlide{to{background-position:0 96px}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes buzzShake{0%,100%{transform:translateX(0) rotate(0)}25%{transform:translateX(-3px) rotate(-1deg)}75%{transform:translateX(3px) rotate(1deg)}}
+@keyframes snip{0%{transform:rotate(0)}30%{transform:rotate(-18deg)}60%{transform:rotate(12deg)}100%{transform:rotate(0)}}
+.glass{
+  background:rgba(20,20,20,.72);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow: 0 20px 60px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.paper{
+  background:#F5F1E8;
+  color:#0A0A0A;
+  box-shadow: 8px 8px 0 #0A0A0A;
+  border:2.5px solid #0A0A0A;
+}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:#E63946;border-radius:999px}
+::-webkit-scrollbar-track{background:#111}
+.quote-enter{animation: quoteIn .6s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes quoteIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body class="antialiased selection:bg-[#E63946] selection:text-white">
+<!-- BACKGROUND -->
+<div class="fixed inset-0 z-0">
+  <div class="absolute inset-0 bg-[#080808]"></div>
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div class="noise"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60"></div>
+  <!-- faint big type watermark -->
+  <div class="absolute top-[12%] left-1/2 -translate-x-1/2 font-anton text-[22vw] leading-none tracking-tighter text-white/[0.025] select-none pointer-events-none whitespace-nowrap">BARBER SHOP</div>
+</div>
+
+<!-- TOP NAV -->
+<header class="relative z-50 sticky top-0">
+  <div class="bg-[#F5F1E8] text-black border-b-[3px] border-black">
+    <div class="max-w-[1600px] mx-auto px-4 md:px-6 h-[52px] md:h-[64px] flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3 md:gap-6">
+        <div class="w-9 h-9 md:w-11 md:h-11 bg-black text-[#F5F1E8] grid place-items-center rounded-[10px] rotate-3 border-2 border-black">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6"/><path d="M9 6a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0V6z"/><path d="M12 12v6"/></svg>
+        </div>
+        <div class="leading-none">
+          <div class="font-archivo text-[13px] md:text-[18px] tracking-tight flex items-baseline gap-2">MIRANDA'S <span class="hidden md:inline font-mono text-[9px] tracking-[0.18em] bg-black text-white px-1.5 py-0.5 rounded">EST. 1972 — BOYLE HEIGHTS</span></div>
+          <div class="font-mono text-[9px] tracking-[0.14em] opacity-60 hidden md:block">CORTES CLÁSICOS • HOT TOWEL • CONVERSACIÓN</div>
+        </div>
+        <div class="hidden lg:flex items-center gap-2 ml-4">
+          <span class="w-2 h-2 bg-[#0BB55A] rounded-full animate-pulse shadow-[0_0_10px_#0BB55A]"></span>
+          <span class="font-mono text-[11px] tracking-[0.14em] font-bold">OPEN • 3 CHAIRS • NO WAIT</span>
+          <span class="ml-2 text-[11px] border border-black px-2 py-1 font-mono bg-white">WALK-INS WELCOME</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 md:gap-3">
+        <div class="hidden md:flex items-center gap-2 font-mono text-[11px]">
+          <span class="opacity-60">TEL</span><span class="font-bold underline decoration-2 underline-offset-4">(323) 555-0148</span>
+        </div>
+        <a href="#" id="bookBtn" class="hidden md:inline-flex bg-[#E63946] text-white font-archivo text-[12px] tracking-[0.08em] px-5 py-2.5 rounded-full border-[2.5px] border-black shadow-[4px_4px_0_#000] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#000] transition">BOOK CHAIR →</a>
+        <button id="menuBtn" class="w-9 h-9 grid place-items-center border-2 border-black rounded-full bg-white md:hidden">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- sub strip -->
+  <div class="bg-black text-[#F5F1E8] border-b border-white/10 overflow-hidden">
+    <div class="flex whitespace-nowrap animate-[marquee_22s_linear_infinite] font-mono text-[11px] tracking-[0.2em] py-2">
+      <span class="mx-6">“A LITTLE OFF THE TOP”</span><span class="opacity-30">•</span><span class="mx-6">SHAPE UP $15</span><span class="opacity-30">•</span><span class="mx-6">“TE VES BIEN, M’IJO”</span><span class="opacity-30">•</span><span class="mx-6">HOT TOWEL SHAVE</span><span class="opacity-30">•</span><span class="mx-6">FADE & BEARD $35</span><span class="opacity-30">•</span><span class="mx-6">“NEXT!”</span><span class="opacity-30">•</span><span class="mx-6">TALC • BAY RUM • BRYLCREEM</span><span class="opacity-30">•</span>
+      <span class="mx-6">“A LITTLE OFF THE TOP”</span><span class="opacity-30">•</span><span class="mx-6">SHAPE UP $15</span><span class="opacity-30">•</span><span class="mx-6">“TE VES BIEN, M’IJO”</span><span class="opacity-30">•</span><span class="mx-6">HOT TOWEL SHAVE</span><span class="opacity-30">•</span><span class="mx-6">FADE & BEARD $35</span><span class="opacity-30">•</span><span class="mx-6">“NEXT!”</span><span class="opacity-30">•</span><span class="mx-6">TALC • BAY RUM • BRYLCREEM</span><span class="opacity-30">•</span>
+    </div>
+  </div>
+</header>
+
+<main class="relative z-10 max-w-[1600px] mx-auto px-4 md:px-6">
+  <!-- HERO -->
+  <section class="pt-6 md:pt-10 pb-28 md:pb-36 relative">
+    <!-- title row -->
+    <div class="grid grid-cols-12 gap-4 items-start">
+      <!-- Left title -->
+      <div class="col-span-12 lg:col-span-5 relative">
+        <div class="inline-flex items-center gap-2 bg-[#FFD60A] border-[2.5px] border-black px-3 py-1.5 rotate-[-1deg] shadow-[4px_4px_0_#000] mb-3 md:mb-4">
+          <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
+          <span class="font-mono text-[10px] md:text-[11px] tracking-[0.18em] font-bold">CULTURA • MEMORIA • RESPETO</span>
+        </div>
+        <h1 class="font-anton leading-[0.82] tracking-[-0.04em] select-none">
+          <span class="block text-[#F5F1E8] text-[18vw] lg:text-[9.5vw] xl:text-[148px]">STAY</span>
+          <span class="block stroke-text text-[19vw] lg:text-[10vw] xl:text-[158px] -mt-2 md:-mt-4">SHARP.</span>
+        </h1>
+        <div class="mt-4 md:mt-6 flex flex-wrap gap-2 font-mono text-[10px] tracking-[0.12em]">
+          <span class="bg-white text-black px-3 py-1.5 border-2 border-black font-bold">CASH ONLY • $5 EXTRA FOR CARD</span>
+          <span class="bg-[#1D4ED8] text-white px-3 py-1.5 border-2 border-black font-bold">KIDS CUT TUESDAY</span>
+        </div>
+        <p class="mt-6 max-w-[46ch] text-[14px] md:text-[15px] leading-relaxed text-white/70 font-[500]">
+          Not just a haircut — a ritual. The buzz, the talc, the radio humming low, the mirror that’s seen every fade since ‘72. Pull up a chair, cuéntame.
+        </p>
+        <!-- quote rotator -->
+        <div class="mt-8 bg-[#111] border border-white/10 rounded-2xl p-4 md:p-5 relative overflow-hidden max-w-[520px]">
+          <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#E63946] via-[#FFD60A] to-[#1D4ED8]"></div>
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex-1">
+              <div class="font-mono text-[10px] tracking-[0.2em] text-white/40 mb-2">MEMORIES FROM THE CHAIR — <span id="quoteIndex" class="text-white/70">01 / 06</span></div>
+              <div id="quoteWrap" class="min-h-[64px]">
+                <p id="quoteText" class="font-serif italic text-[18px] md:text-[20px] leading-tight text-white quote-enter">“My dad brought me here at 8. Same chair, same cape. Now I bring my son.”</p>
+                <p id="quoteAuthor" class="font-mono text-[11px] tracking-[0.12em] text-white/50 mt-2">— ARMANDO, 41 • LINCOLN HEIGHTS</p>
+              </div>
+            </div>
+            <div class="hidden md:flex flex-col items-center gap-1">
+              <button id="prevQuote" class="w-7 h-7 rounded-full border border-white/15 grid place-items-center hover:bg-white hover:text-black transition"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button id="nextQuote" class="w-7 h-7 rounded-full border border-white/15 grid place-items-center hover:bg-white hover:text-black transition"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+            </div>
+          </div>
+          <div class="mt-4 flex gap-1.5">
+            <span class="quote-dot h-1.5 flex-1 rounded-full bg-white transition"></span>
+            <span class="quote-dot h-1.5 flex-1 rounded-full bg-white/20 transition"></span>
+            <span class="quote-dot h-1.5 flex-1 rounded-full bg-white/20 transition"></span>
+            <span class="quote-dot h-1.5 flex-1 rounded-full bg-white/20 transition"></span>
+            <span class="quote-dot h-1.5 flex-1 rounded-full bg-white/20 transition"></span>
+            <span class="quote-dot h-1.5 flex-1 rounded-full bg-white/20 transition"></span>
+          </div>
+        </div>
+        <!-- social proof -->
+        <div class="mt-5 flex items-center gap-3">
+          <div class="flex -space-x-2">
+            <img src="https://i.pravatar.cc/100?img=15" class="w-8 h-8 rounded-full border-2 border-black object-cover"/>
+            <img src="https://i.pravatar.cc/100?img=32" class="w-8 h-8 rounded-full border-2 border-black object-cover"/>
+            <img src="https://i.pravatar.cc/100?img=12" class="w-8 h-8 rounded-full border-2 border-black object-cover"/>
+            <span class="w-8 h-8 rounded-full bg-[#FFD60A] border-2 border-black grid place-items-center font-mono text-[10px] font-bold text-black">+2k</span>
+          </div>
+          <span class="font-mono text-[11px] tracking-[0.1em] text-white/60">4.9 ★ LOVED BY THE BARRIO SINCE 1972</span>
+        </div>
+      </div>
+
+      <!-- center visual -->
+      <div class="col-span-12 lg:col-span-4 flex justify-center lg:justify-start relative mt-2 lg:mt-0">
+        <div class="relative w-[320px] md:w-[420px] lg:w-[440px] h-[520px] md:h-[640px] flex justify-center select-none">
+          <!-- paper shadow base -->
+          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[280px] md:w-[340px] h-[120px] bg-black/40 blur-[22px] rounded-[50%]"></div>
+          <!-- checker floor -->
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[360px] md:w-[440px] h-[140px] rounded-[24px] overflow-hidden border-[3px] border-black rotate-[.5deg] bg-white">
+            <div class="w-full h-full" style="background: repeating-conic-gradient(#111 0% 25%, #F5F1E8 0% 50%); background-size: 40px 40px; opacity:.95"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </div>
+          <!-- chair platform -->
+          <div class="absolute bottom-[88px] left-1/2 -translate-x-1/2 w-[220px] h-[14px] bg-[#1a1a1a] border-2 border-black rounded-full"></div>
+          <!-- CENTRAL POLE + CHAIR COMPOSITION -->
+          <div id="chairVisual" class="absolute bottom-[102px] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group">
+            <!-- pole -->
+            <div class="relative">
+              <div class="w-[156px] md:w-[176px] h-[360px] md:h-[420px] bg-[#F5F1E8] border-[3px] border-black rounded-[36px] overflow-hidden shadow-[12px_12px_0_#000] flex flex-col items-center">
+                <!-- chrome top -->
+                <div class="w-full h-[26px] bg-gradient-to-b from-zinc-100 to-zinc-400 border-b-[3px] border-black flex items-center justify-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-white/80"></span><span class="w-8 h-1 bg-black/20 rounded-full"></span>
+                </div>
+                <!-- glass cylinder -->
+                <div class="flex-1 w-[86px] md:w-[92px] my-3 rounded-full overflow-hidden border-[3px] border-black relative bg-white shadow-[inset_0_0_20px_rgba(0,0,0,.2)]">
+                  <div class="absolute inset-0 barber-pole-stripes opacity-95"></div>
+                  <!-- glass highlight -->
+                  <div class="absolute left-[10px] top-0 bottom-0 w-[18px] bg-gradient-to-r from-white/70 to-transparent rounded-full blur-[1px]"></div>
+                  <div class="absolute right-[8px] top-0 bottom-0 w-[8px] bg-white/30 rounded-full"></div>
+                </div>
+                <!-- chrome bottom -->
+                <div class="w-full h-[26px] bg-gradient-to-b from-zinc-300 to-zinc-600 border-t-[3px] border-black"></div>
+                <!-- brand plate -->
+                <div class="absolute bottom-[18px] left-1/2 -translate-x-1/2 bg-black text-[#FFD60A] font-archivo text-[8px] tracking-[0.18em] px-3 py-1 rounded-full border border-white/20">MIRANDA'S</div>
+              </div>
+              <!-- floating chrome foot -->
+              <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[120px] h-[14px] bg-gradient-to-b from-zinc-200 to-zinc-500 border-2 border-black rounded-full"></div>
+              <!-- interaction hint -->
+              <div class="absolute -top-3 -right-8 md:-right-10 bg-[#E63946] text-white font-mono text-[10px] font-bold tracking-[0.12em] px-2.5 py-1 rounded-full border-2 border-black rotate-6 shadow-[3px_3px_0_#000] group-hover:rotate-3 transition">CLICK TO BUZZ ✂︎</div>
+            </div>
+            <!-- shelf / tools -->
+            <div class="mt-8 flex items-center gap-2 bg-[#F5F1E8] border-2 border-black rounded-full px-3 py-2 shadow-[4px_4px_0_#000]">
+              <span class="w-8 h-8 rounded-full bg-black text-white grid place-items-center">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-[0.14em] text-black">SHEARS • CLIPPERS • BRUSH</span>
+              <span class="w-2 h-2 bg-[#0BB55A] rounded-full animate-pulse"></span>
+            </div>
+          </div>
+          <!-- floating detail cards around pole -->
+          <div class="absolute top-8 -left-2 md:-left-6 paper rounded-xl px-3 py-3 w-[148px] rotate-[-2deg] hidden md:block">
+            <div class="font-mono text-[9px] tracking-[0.14em] opacity-60">PRICE LIST 1987 → NOW</div>
+            <div class="font-mono text-[11px] leading-tight mt-1 font-bold">REGULAR $12 → $28<br/>SHAVE $8 → $25<br/>KIDS $10 → $20</div>
+            <div class="mt-2 text-[10px] bg-black text-white inline-block px-2 py-0.5 font-mono">NO CHECKS</div>
+          </div>
+          <div class="absolute top-28 -right-2 md:-right-8 bg-black text-white border-2 border-white/10 rounded-xl px-3 py-3 w-[150px] rotate-[1.5deg] hidden md:block">
+            <div class="flex items-center gap-1.5 font-mono text-[9px] tracking-[0.18em] text-white/60"><span class="w-1.5 h-1.5 bg-[#E63946] rounded-full"></span> NOW PLAYING ON AM 1230</div>
+            <div class="font-serif italic text-[13px] leading-tight mt-1">“La Voz del Barrio — boleros & soul all day”</div>
+          </div>
+          <div class="absolute bottom-40 -left-4 md:-left-10 bg-[#1D4ED8] text-white border-[2px] border-black rounded-xl px-3 py-2 rotate-[-1deg] shadow-[4px_4px_0_#000] hidden md:flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-white text-black grid place-items-center font-bold">3</span>
+            <span class="font-mono text-[10px] leading-none font-bold">CHAIRS<br/><span class="opacity-80 font-normal">ALWAYS HUMMING</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- right panel -->
+      <div class="col-span-12 lg:col-span-3 space-y-4 mt-2 lg:mt-0">
+        <!-- ticket -->
+        <div class="paper rounded-[18px] p-4 md:p-5 rotate-[0.6deg]">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[10px] tracking-[0.18em] font-bold bg-black text-white px-2 py-1 rounded">TICKET No. 047</span>
+            <span class="font-mono text-[10px]">08.11.2026 — 10:42 AM</span>
+          </div>
+          <div class="mt-3 border-t-[2px] border-dashed border-black/20 pt-3 flex justify-between items-end">
+            <div>
+              <div class="font-archivo text-[22px] leading-none">FADE</div>
+              <div class="font-mono text-[11px] tracking-[0.12em] opacity-60">MID SKIN • LINE UP • BEARD</div>
+            </div>
+            <div class="text-right">
+              <div class="font-mono text-[11px] opacity-60 line-through">$30</div>
+              <div class="font-archivo text-[20px] leading-none">$28</div>
+            </div>
+          </div>
+          <div class="mt-3 flex gap-2">
+            <span class="flex-1 bg-black text-white text-center font-mono text-[10px] tracking-[0.12em] py-2 rounded-full">NEXT → CHAIR 2 • TONY</span>
+          </div>
+          <div class="mt-3 flex items-center gap-2 font-mono text-[10px]">
+            <span class="w-2 h-2 bg-[#0BB55A] rounded-full"></span> Tony • 24 yrs in the chair • “Dime, ¿cómo lo quieres?”
+          </div>
+        </div>
+        <!-- objects -->
+        <div class="grid grid-cols-3 gap-3">
+          <button class="object-card group bg-[#111] border border-white/10 rounded-2xl p-3 hover:bg-white hover:text-black hover:border-black transition text-left">
+            <div class="w-9 h-9 rounded-full bg-white group-hover:bg-black group-hover:text-white border-2 border-black grid place-items-center transition">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a4 4 0 0 0 0 5.6l2 2a4 4 0 0 0 5.6-5.6l-1-1"/><path d="M9.3 17.7a4 4 0 0 1 0-5.6l2-2a4 4 0 0 1 5.6 5.6l-1 1"/></svg>
+            </div>
+            <div class="font-mono text-[10px] tracking-[0.12em] mt-2 font-bold">STRAIGHT</div>
+            <div class="font-mono text-[10px] opacity-60">Navaja • 1958</div>
+          </button>
+          <button class="object-card group bg-[#E63946] border-2 border-black rounded-2xl p-3 text-white hover:brightness-110 transition text-left shadow-[4px_4px_0_#000]">
+            <div class="w-9 h-9 rounded-full bg-white text-black border-2 border-black grid place-items-center">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M7 10l7-7 3 3-7 7z"/><path d="M17 14l-7 7-3-3 7-7z"/></svg>
+            </div>
+            <div class="font-mono text-[10px] tracking-[0.12em] mt-2 font-bold">SHEARS</div>
+            <div class="font-mono text-[10px] opacity-90">Click me ✂︎</div>
+          </button>
+          <button class="object-card group bg-[#111] border border-white/10 rounded-2xl p-3 hover:bg-white hover:text-black hover:border-black transition text-left">
+            <div class="w-9 h-9 rounded-full bg-white group-hover:bg-black group-hover:text-white border-2 border-black grid place-items-center transition">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </div>
+            <div class="font-mono text-[10px] tracking-[0.12em] mt-2 font-bold">BAY RUM</div>
+            <div class="font-mono text-[10px] opacity-60">Pinaud • 1810</div>
+          </button>
+        </div>
+        <!-- slang box -->
+        <div class="bg-[#FFD60A] border-[2.5px] border-black rounded-[18px] p-4 rotate-[-0.8deg] shadow-[6px_6px_0_#000]">
+          <div class="font-mono text-[10px] tracking-[0.18em] font-bold">SLANG DEL BARRIO</div>
+          <div class="mt-2 space-y-1.5 font-mono text-[12px] leading-tight font-bold">
+            <div class="flex justify-between border-b border-black/15 pb-1"><span>“Échale un faded”</span><span class="opacity-50 font-normal">→ skin fade</span></div>
+            <div class="flex justify-between border-b border-black/15 pb-1"><span>“Pásame la navaja”</span><span class="opacity-50 font-normal">→ line up</span></div>
+            <div class="flex justify-between"><span>“Quedó al tiro”</span><span class="opacity-50 font-normal">→ clean!</span></div>
+          </div>
+        </div>
+        <!-- keyboard hint -->
+        <div class="hidden md:flex items-center justify-between bg-white/5 backdrop-blur border border-white/10 rounded-full px-4 py-2.5 font-mono text-[11px]">
+          <span class="flex items-center gap-2"><kbd class="bg-white text-black px-2 py-1 rounded border-b-2 border-black/20 font-bold text-[11px]">SPACE</kbd> <span class="text-white/70">buzz the clippers</span></span>
+          <span class="flex items-center gap-2"><kbd class="bg-white text-black px-2 py-1 rounded border-b-2 border-black/20 font-bold">S</kbd> <span class="text-white/70">snip</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- bottom details bar -->
+    <div class="mt-10 md:mt-12 grid grid-cols-12 gap-3 md:gap-4">
+      <div class="col-span-12 md:col-span-8 bg-[#F5F1E8] text-black border-[2.5px] border-black rounded-[20px] p-4 md:p-5 flex flex-col md:flex-row gap-4 md:items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-black text-white grid place-items-center shrink-0 border-2 border-black">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/><path d="M12 7v5l4 2"/></svg>
+          </div>
+          <div>
+            <div class="font-archivo text-[15px] md:text-[18px] leading-none">HOURS THAT NEVER CHANGED</div>
+            <div class="font-mono text-[11px] md:text-[12px] opacity-70">MON–SAT 8AM–8PM • SUN 9AM–5PM • CLOSED THANKSGIVING</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 font-mono text-[11px] shrink-0">
+          <span class="hidden md:inline opacity-50">MUSIC BY</span>
+          <a href="https://youtube.com/playlist?list=PLeatb7hupNV_AWUl_7ttbsKeCQh8tF5N4&si=23HpkGEUCre4ZaPD" target="_blank" class="bg-black text-white px-3 py-2 rounded-full font-bold hover:bg-[#E63946] transition">YOUTUBE PLAYLIST ↗</a>
+          <span class="bg-white border-2 border-black px-3 py-2 rounded-full font-bold">RADIO • 61 TRACKS</span>
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-4 bg-[#111] border border-white/10 rounded-[20px] p-4 flex items-center gap-4">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=200&auto=format&fit=crop" class="w-14 h-14 rounded-xl object-cover border-2 border-white/10"/>
+        <div class="flex-1">
+          <div class="font-mono text-[10px] tracking-[0.14em] text-white/50">ON THE WALL • SINCE 1984</div>
+          <div class="font-serif italic text-[13px] leading-tight text-white">“No se fía. No se habla de política. Se respeta la silla.”</div>
+          <div class="font-mono text-[10px] text-white/40">— house rules, handwritten</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- PARTICLES for snip -->
+<div id="particles" class="pointer-events-none fixed inset-0 z-40 overflow-hidden"></div>
+
+<!-- HIDDEN YT PLAYER -->
+<div id="yt-player" class="fixed -left-[9999px] -top-[9999px] w-1 h-1 opacity-0 pointer-events-none"></div>
+
+<!-- GLASS PLAYER -->
+<div class="fixed bottom-3 md:bottom-5 left-3 right-3 md:left-1/2 md:-translate-x-1/2 md:w-[760px] z-50">
+  <div class="glass rounded-[22px] md:rounded-[26px] p-3 md:p-4 flex items-center gap-3 md:gap-4">
+    <!-- art -->
+    <div class="w-[56px] h-[56px] md:w-[64px] md:h-[64px] rounded-xl md:rounded-2xl bg-[#0A0A0A] border border-white/10 overflow-hidden shrink-0 relative grid place-items-center">
+      <div class="absolute inset-0 bg-gradient-to-br from-[#E63946]/20 via-transparent to-[#1D4ED8]/20"></div>
+      <div id="vinyl" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-[3px] border-zinc-800 grid place-items-center relative">
+        <div class="w-3 h-3 bg-[#E63946] rounded-full border-2 border-white"></div>
+        <div class="absolute inset-0 rounded-full border border-white/10"></div>
+      </div>
+      <div id="eq" class="absolute bottom-1 left-1 right-1 flex items-end justify-center gap-[2px] opacity-0 transition">
+        <span class="w-[3px] bg-[#E63946] rounded-full animate-[eq_0.6s_ease_infinite] h-3"></span>
+        <span class="w-[3px] bg-[#FFD60A] rounded-full animate-[eq_0.6s_ease_infinite_0.1s] h-5"></span>
+        <span class="w-[3px] bg-[#1D4ED8] rounded-full animate-[eq_0.6s_ease_infinite_0.2s] h-4"></span>
+        <span class="w-[3px] bg-white rounded-full animate-[eq_0.6s_ease_infinite_0.15s] h-2"></span>
+      </div>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center gap-2">
+        <span class="hidden md:inline-flex items-center gap-1.5 bg-white text-black font-mono text-[9px] tracking-[0.16em] font-bold px-2 py-1 rounded-full"><span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>LIVE RADIO</span>
+        <span class="font-mono text-[10px] tracking-[0.16em] text-white/50">BARBERSHOP • BOLEROS • SOUL • OLDIES</span>
+        <span id="ytStatus" class="hidden md:inline font-mono text-[10px] text-white/30">• CONNECTING…</span>
+      </div>
+      <div id="trackTitle" class="font-bold text-[13px] md:text-[15px] leading-tight truncate pr-2 mt-0.5">Loading classics from Miranda’s radio…</div>
+      <div id="trackSub" class="font-mono text-[11px] text-white/50 truncate">YouTube Playlist • 61 tracks • Tap play</div>
+      <div class="mt-2 md:mt-3 flex items-center gap-3">
+        <div id="progressWrap" class="flex-1 h-[6px] bg-white/10 rounded-full overflow-hidden cursor-pointer relative group">
+          <div id="progressBar" class="absolute left-0 top-0 bottom-0 bg-[#E63946] w-[0%] rounded-full transition-[width] duration-200"></div>
+          <div id="progressDot" class="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow border-2 border-black opacity-0 group-hover:opacity-100 transition" style="left:0%"></div>
+        </div>
+        <span id="timeLabel" class="font-mono text-[11px] text-white/60 tabular-nums">0:00 / 0:00</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 md:gap-2 shrink-0">
+      <button id="prevBtn" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 border border-white/10 grid place-items-center hover:bg-white hover:text-black transition">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 18L8 12l10-6v12zM6 6h2v12H6z"/></svg>
+      </button>
+      <button id="playBtn" class="w-[52px] h-[52px] md:w-[56px] md:h-[56px] rounded-full bg-white text-black grid place-items-center hover:scale-[1.03] active:scale-[0.98] transition shadow-[0_8px_20px_rgba(0,0,0,.4)] border-[3px] border-black">
+        <svg id="playIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="ml-[2px]"><path d="M8 5.14v14l11-7z"/></svg>
+        <svg id="pauseIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <button id="nextBtn" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 border border-white/10 grid place-items-center hover:bg-white hover:text-black transition">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6l10 6-10 6V6zM16 6h2v12h-2z"/></svg>
+      </button>
+    </div>
+    <button id="muteBtn" class="hidden md:grid w-9 h-9 rounded-full bg-white/5 border border-white/10 place-items-center hover:bg-white hover:text-black transition">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    </button>
+  </div>
+  <div class="hidden md:flex justify-center mt-2">
+    <span class="font-mono text-[10px] tracking-[0.16em] text-white/30">PRESS <span class="text-white/60">[SPACE]</span> TO BUZZ • <span class="text-white/60">[S]</span> TO SNIP • CLICK THE POLE</span>
+  </div>
+</div>
+
+<style>
+@keyframes eq{0%,100%{height:6px}50%{height:18px}}
+</style>
+
+<script>
+// QUOTES
+const quotes = [
+  {t:"“My dad brought me here at 8. Same chair, same cape. Now I bring my son.”",a:"— ARMANDO, 41 • LINCOLN HEIGHTS"},
+  {t:"“Tony knows my cut without me saying a word. That’s respeto.”",a:"— LUIS, 29 • EAST LA"},
+  {t:"“The smell of bay rum and talc — instantly I’m 12 again, waiting for my turn.”",a:"— MARTA, 36 • BOYLE HEIGHTS"},
+  {t:"“We solved the world’s problems in that chair. Politics, love, fútbol.”",a:"— DON CHEO, 68 • BARBER SINCE 1979"},
+  {t:"“Fresh fade, hot towel, you walk out a new man. Al tiro.”",a:"— JESSIE, 22 • STUDENT"},
+  {t:"“No mirrors at home hit like the shop mirror. You see yourself right.”",a:"— ELENA, 27 • ARTIST"},
+];
+let qIndex=0;
+const qText=document.getElementById('quoteText');
+const qAuthor=document.getElementById('quoteAuthor');
+const qIdx=document.getElementById('quoteIndex');
+const dots=document.querySelectorAll('.quote-dot');
+function renderQuote(i, animate=true){
+  qIndex=i;
+  if(animate){
+    qText.classList.remove('quote-enter'); void qText.offsetWidth; qText.classList.add('quote-enter');
+  }
+  qText.textContent=quotes[i].t;
+  qAuthor.textContent=quotes[i].a;
+  qIdx.textContent=`0${i+1} / 0${quotes.length}`;
+  dots.forEach((d,idx)=>{d.className= idx===i? 'quote-dot h-1.5 flex-1 rounded-full bg-white' : 'quote-dot h-1.5 flex-1 rounded-full bg-white/20'});
+}
+let qTimer=setInterval(()=>renderQuote((qIndex+1)%quotes.length), 3200);
+document.getElementById('nextQuote').addEventListener('click',()=>{clearInterval(qTimer);renderQuote((qIndex+1)%quotes.length);qTimer=setInterval(()=>renderQuote((qIndex+1)%quotes.length),3200)});
+document.getElementById('prevQuote').addEventListener('click',()=>{clearInterval(qTimer);renderQuote((qIndex-1+quotes.length)%quotes.length);qTimer=setInterval(()=>renderQuote((qIndex+1)%quotes.length),3200)});
+
+// AUDIO - Web Audio for interactions
+let audioCtx;
+function ensureAudio(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); }
+function playBuzz(){
+  ensureAudio();
+  const now=audioCtx.currentTime;
+  const osc=audioCtx.createOscillator();
+  const gain=audioCtx.createGain();
+  const filter=audioCtx.createBiquadFilter();
+  osc.type='sawtooth'; osc.frequency.value=110;
+  filter.type='bandpass'; filter.frequency.value=900; filter.Q.value=1;
+  gain.gain.setValueAtTime(0, now);
+  gain.gain.linearRampToValueAtTime(0.35, now+0.02);
+  gain.gain.linearRampToValueAtTime(0.28, now+0.35);
+  gain.gain.linearRampToValueAtTime(0, now+0.6);
+  // wobble
+  const lfo=audioCtx.createOscillator(); lfo.frequency.value=38; const lfoGain=audioCtx.createGain(); lfoGain.gain.value=14;
+  lfo.connect(lfoGain); lfoGain.connect(osc.frequency);
+  osc.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
+  osc.start(now); lfo.start(now); osc.stop(now+0.62); lfo.stop(now+0.62);
+  // visual shake
+  const v=document.getElementById('chairVisual');
+  v.style.animation='buzzShake 0.45s ease';
+  setTimeout(()=>v.style.animation='',500);
+  // talc puff
+  puff();
+}
+function playSnip(){
+  ensureAudio();
+  const now=audioCtx.currentTime;
+  [0,0.12].forEach(d=>{
+    const osc=audioCtx.createOscillator(); const gain=audioCtx.createGain();
+    osc.type='square'; osc.frequency.setValueAtTime(1800, now+d); osc.frequency.exponentialRampToValueAtTime(600, now+d+0.05);
+    gain.gain.setValueAtTime(0, now+d); gain.gain.linearRampToValueAtTime(0.45, now+d+0.005); gain.gain.exponentialRampToValueAtTime(0.001, now+d+0.12);
+    osc.connect(gain); gain.connect(audioCtx.destination); osc.start(now+d); osc.stop(now+d+0.13);
+  });
+  const v=document.getElementById('chairVisual');
+  v.style.animation='snip 0.4s ease';
+  setTimeout(()=>v.style.animation='',420);
+  puff(true);
+}
+function puff(isSnip=false){
+  const c=document.getElementById('particles');
+  for(let i=0;i< (isSnip?10:14);i++){
+    const el=document.createElement('div');
+    el.style.position='absolute';
+    el.style.left='50%'; el.style.top='42%';
+    el.style.width=(isSnip? '4px':'6px'); el.style.height=(isSnip? '4px':'6px');
+    el.style.background=isSnip? '#F5F1E8' : 'white';
+    el.style.borderRadius='999px'; el.style.opacity='0.9';
+    el.style.pointerEvents='none';
+    el.style.boxShadow='0 1px 6px rgba(0,0,0,.2)';
+    c.appendChild(el);
+    const angle=(Math.PI*2*i/14)+Math.random()*0.6;
+    const dist= 60 + Math.random()*90;
+    const x=Math.cos(angle)*dist;
+    const y=Math.sin(angle)*dist - 20;
+    el.animate([
+      {transform:'translate(-50%,-50%) scale(1)', opacity:0.9},
+      {transform:`translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(0)`, opacity:0}
+    ],{duration: 700+Math.random()*400, easing:'cubic-bezier(.16,1,.3,1)'}).onfinish=()=>el.remove();
+  }
+}
+
+// interactions
+document.getElementById('chairVisual').addEventListener('click', playBuzz);
+document.querySelectorAll('.object-card')[1].addEventListener('click', playSnip);
+document.getElementById('bookBtn')?.addEventListener('click', (e)=>{e.preventDefault(); playSnip(); alert('¡Fierro! Chair 2 with Tony — tomorrow 10am. We’ll text you, m’ijo. (Demo)');});
+
+window.addEventListener('keydown', (e)=>{
+  if(e.code==='Space'){ e.preventDefault(); playBuzz(); if(window.player && typeof player.playVideo==='function'){ togglePlay(); }}
+  if(e.key.toLowerCase()==='s'){ playSnip(); }
+});
+
+// --- YOUTUBE PLAYER ---
+let player;
+let isYTReady=false;
+let isPlaying=false;
+let progressTimer=null;
+let mockMode=false;
+let mockIndex=0;
+const mockTracks=[
+  {title:"Los Panchos — Sabor a Mí (Barbershop Radio)", duration: 198},
+  {title:"Al Green — Let's Stay Together", duration: 212},
+  {title:"Etta James — At Last", duration: 180},
+  {title:"Curtis Mayfield — Move On Up", duration: 225},
+  {title:"Roberto Carlos — Detalles", duration: 240},
+  {title:"Sam Cooke — A Change Is Gonna Come", duration: 210},
+];
+let mockTime=0;
+let mockDuration=mockTracks[0].duration;
+
+const trackTitle=document.getElementById('trackTitle');
+const trackSub=document.getElementById('trackSub');
+const ytStatus=document.getElementById('ytStatus');
+const progressBar=document.getElementById('progressBar');
+const progressDot=document.getElementById('progressDot');
+const progressWrap=document.getElementById('progressWrap');
+const timeLabel=document.getElementById('timeLabel');
+const vinyl=document.getElementById('vinyl');
+const eq=document.getElementById('eq');
+const playBtn=document.getElementById('playBtn');
+const playIcon=document.getElementById('playIcon');
+const pauseIcon=document.getElementById('pauseIcon');
+
+function formatTime(s){ s=Math.max(0, Math.floor(s)); const m=Math.floor(s/60); const sec=String(s%60).padStart(2,'0'); return `${m}:${sec}`}
+
+function setPlaying(p){
+  isPlaying=p;
+  playIcon.classList.toggle('hidden', p);
+  pauseIcon.classList.toggle('hidden', !p);
+  vinyl.style.animation = p ? 'spin 3s linear infinite' : 'none';
+  // inject spin keyframes dynamically
+  if(!document.getElementById('spinStyle')){
+    const st=document.createElement('style'); st.id='spinStyle'; st.textContent='@keyframes spin{to{transform:rotate(360deg)}}'; document.head.appendChild(st);
+  }
+  eq.style.opacity = p ? '1' : '0';
+  vinyl.style.animationPlayState = p ? 'running' : 'paused';
+  if(p) vinyl.style.animation='spin 2.8s linear infinite';
+  else vinyl.style.animation='none';
+}
+
+function updateProgress(cur, dur){
+  const pct= dur ? (cur/dur*100) : 0;
+  progressBar.style.width=pct+'%';
+  progressDot.style.left=`calc(${pct}% - 6px)`;
+  timeLabel.textContent=`${formatTime(cur)} / ${formatTime(dur)}`;
+}
+
+function startProgressLoop(){
+  clearInterval(progressTimer);
+  progressTimer=setInterval(()=>{
+    if(mockMode){
+      if(isPlaying){
+        mockTime+=0.5;
+        if(mockTime>=mockDuration){ mockNext(); }
+        updateProgress(mockTime, mockDuration);
+        trackTitle.textContent=mockTracks[mockIndex].title;
+        trackSub.textContent=`MOCK RADIO • TRACK ${mockIndex+1} / ${mockTracks.length}`;
+      }
+    } else if(player && isYTReady){
+      try{
+        const cur=player.getCurrentTime ? player.getCurrentTime():0;
+        const dur=player.getDuration ? player.getDuration():0;
+        if(dur) updateProgress(cur, dur);
+        const data=player.getVideoData ? player.getVideoData():null;
+        if(data && data.title){
+          trackTitle.textContent=data.title;
+          trackSub.textContent=`YouTube • ${data.author || 'Barbershop Radio'} • Playlist`;
+        }
+      }catch(e){}
+    }
+  }, 500);
+}
+
+function mockNext(){ mockIndex=(mockIndex+1)%mockTracks.length; mockTime=0; mockDuration=mockTracks[mockIndex].duration; trackTitle.textContent=mockTracks[mockIndex].title; }
+function mockPrev(){ mockIndex=(mockIndex-1+mockTracks.length)%mockTracks.length; mockTime=0; mockDuration=mockTracks[mockIndex].duration; }
+
+function togglePlay(){
+  ensureAudio();
+  if(mockMode){
+    setPlaying(!isPlaying);
+    if(isPlaying) { ytStatus.textContent='• MOCK PLAYING'; ytStatus.className='hidden md:inline font-mono text-[10px] text-[#0BB55A]';}
+    else { ytStatus.textContent='• PAUSED'; ytStatus.className='hidden md:inline font-mono text-[10px] text-white/30';}
+    return;
+  }
+  if(!isYTReady || !player || !player.playVideo){ // fallback to mock
+    enableMock();
+    setPlaying(true);
+    return;
+  }
+  const state=player.getPlayerState();
+  if(state===1){ player.pauseVideo(); } else { player.playVideo(); }
+}
+
+function enableMock(){
+  mockMode=true;
+  ytStatus.textContent='• OFFLINE MOCK — TAP TO PLAY';
+  ytStatus.className='hidden md:inline font-mono text-[10px] text-[#FFD60A]';
+  trackTitle.textContent=mockTracks[mockIndex].title;
+  trackSub.textContent='Offline demo — YouTube blocked in preview, using local mock';
+  setPlaying(false);
+  startProgressLoop();
+}
+
+// YT API global
+window.onYouTubeIframeAPIReady = function(){
+  try{
+    player = new YT.Player('yt-player', {
+      height:'1',
+      width:'1',
+      playerVars:{
+        listType:'playlist',
+        list:'PLeatb7hupNV_AWUl_7ttbsKeCQh8tF5N4',
+        autoplay:0,
+        controls:0,
+        modestbranding:1,
+        rel:0,
+        playsinline:1,
+        origin: location.origin
+      },
+      events:{
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange,
+        'onError': ()=> enableMock()
+      }
+    });
+  }catch(e){ enableMock(); }
+};
+
+function onPlayerReady(){
+  isYTReady=true;
+  ytStatus.textContent='• READY • TAP PLAY';
+  ytStatus.className='hidden md:inline font-mono text-[10px] text-white/50';
+  // preload title
+  setTimeout(()=>{
+    try{
+      const d=player.getVideoData();
+      if(d && d.title){ trackTitle.textContent=d.title; trackSub.textContent='YouTube Playlist • Ready';}
+    }catch(e){}
+  },800);
+  startProgressLoop();
+  // if autoplay blocked, stay paused
+}
+
+function onPlayerStateChange(e){
+  // 1 playing, 2 paused, 0 ended
+  if(e.data===1){ setPlaying(true); ytStatus.textContent='• PLAYING'; ytStatus.className='hidden md:inline font-mono text-[10px] text-[#0BB55A]'; }
+  else if(e.data===2){ setPlaying(false); ytStatus.textContent='• PAUSED'; ytStatus.className='hidden md:inline font-mono text-[10px] text-white/40';}
+  else if(e.data===0){ /* ended auto next */ }
+  else if(e.data===3){ ytStatus.textContent='• BUFFERING…';}
+}
+
+// fallback if YT not loading in 4s
+setTimeout(()=>{ if(!isYTReady) enableMock(); }, 4000);
+
+// controls
+playBtn.addEventListener('click', togglePlay);
+document.getElementById('nextBtn').addEventListener('click', ()=>{
+  ensureAudio();
+  if(mockMode){ mockNext(); mockTime=0; if(!isPlaying) setPlaying(true); return; }
+  if(player && player.nextVideo) player.nextVideo();
+});
+document.getElementById('prevBtn').addEventListener('click', ()=>{
+  ensureAudio();
+  if(mockMode){ mockPrev(); mockTime=0; if(!isPlaying) setPlaying(true); return; }
+  if(player && player.previousVideo) player.previousVideo();
+});
+document.getElementById('muteBtn').addEventListener('click', ()=>{
+  if(mockMode) return;
+  if(player && player.isMuted){
+    if(player.isMuted()) player.unMute(); else player.mute();
+  }
+});
+progressWrap.addEventListener('click', (e)=>{
+  const rect=progressWrap.getBoundingClientRect();
+  const pct=(e.clientX-rect.left)/rect.width;
+  if(mockMode){
+    mockTime=pct*mockDuration;
+    updateProgress(mockTime,mockDuration);
+  }else if(player && player.seekTo){
+    const dur=player.getDuration();
+    player.seekTo(pct*dur, true);
+  }
+});
+
+// parallax for pole subtle
+const chair=document.getElementById('chairVisual');
+document.addEventListener('mousemove', (e)=>{
+  if(window.innerWidth<1024) return;
+  const x=(e.clientX/window.innerWidth -0.5)* 10;
+  const y=(e.clientY/window.innerHeight -0.5)* 6;
+  chair.style.transform=`translateX(-50%) translate(${x}px, ${y}px)`;
+});
+chair.style.left='50%';
+chair.style.transform='translateX(-50%)';
+
+// menu
+document.getElementById('menuBtn')?.addEventListener('click', ()=> alert('Menu — Visit us at 1733 Brooklyn Ave, Boyle Heights. Walk-ins welcome!'));
+
+// initial render
+renderQuote(0,false);
+startProgressLoop();
+</script>
+</body>
+</html>
